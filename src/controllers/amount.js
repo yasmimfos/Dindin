@@ -43,6 +43,10 @@ const amountUpdate = async (req, res) => {
     }
 };
 
+//confirmação de recebimento e alteração no saldo
+
+//confirmação de pagamento e alteração no saldo
+
 module.exports = {
     amount,
     amountRegister,

@@ -5,7 +5,7 @@ const { bodyValidation, tokenValidation, typeValidation } = require('./middlewar
 const login = require('./controllers/login');
 const { userRegister, profile, updateUser, deleteUser } = require('./controllers/users');
 const { listCategories, createCategory, updateCategory, deleteCategory } = require('./controllers/category');
-const { balance, transactionDetails } = require('./controllers/transactions');
+const { balance, transactionDetails, createTransaction, updateTransaction, deleteTransaction, balanceTransaction } = require('./controllers/transactions');
 const { amount, amountRegister, amountUpdate } = require('./controllers/amount');
 
 const userSchema = require('./schemas/userSchema');
@@ -33,13 +33,13 @@ routes.post('/saldo', bodyValidation(amountSchema), amountRegister);
 routes.put('/saldo', bodyValidation(amountSchema), amountUpdate);
 
 routes.get('/transacoes', balance);
-routes.get('/transacoes/entradas', balance);
-routes.get('/transacoes/saidas', balance);
-// routes.get('/entradas/extrato', extratoTransacoes);
+routes.get('/transacoes/entradas', balance); //fazer função
+routes.get('/transacoes/saidas', balance);//fazer função
+routes.get('/transacoes/extrato', balanceTransaction);
 routes.get('/transacoes/:id', transactionDetails);
-routes.post('/transacoes', bodyValidation(transactionSchema), typeValidation, transactionDetails);
-// routes.put('/entradas/:id', editarentradas);
-// routes.delete('/entradas/:id', removerentradas);
+routes.post('/transacoes', bodyValidation(transactionSchema), typeValidation, createTransaction);
+routes.put('/transacoes/:id', bodyValidation(transactionSchema), typeValidation, updateTransaction);
+routes.delete('/transacoes/:id', deleteTransaction);
 
 
 module.exports = routes;
