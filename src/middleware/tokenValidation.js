@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const connect = require('../connect');
+const connect = require('../connect/connect');
 
 const tokenValidation = async (req, res, next) => {
     const { authorization } = req.headers;
@@ -27,24 +27,4 @@ const tokenValidation = async (req, res, next) => {
     };
 };
 
-
-const bodyValidation = schema => async (req, res, next) => {
-    try {
-        await schema.validateAsync(req.body);
-        next();
-    } catch (error) {
-        return res.status(400).json({ mensagem: error.message })
-    }
-};
-
-const typeValidation = (req, res, next) => {
-    const { tipo } = req.body
-
-    if (tipo != "entrada" && tipo != "saida") {
-        return res.status(400).json({ mensagem: 'O tipo da transação deve ser específicado como entrada ou saida' })
-    };
-
-    next();
-};
-
-module.exports = { tokenValidation, bodyValidation, typeValidation };
+module.exports = tokenValidation;

@@ -1,17 +1,33 @@
 const express = require('express');
 
-const { bodyValidation, tokenValidation, typeValidation } = require('./middleware/validation');
-
-const login = require('./controllers/login');
-const { userRegister, profile, updateUser, deleteUser } = require('./controllers/users');
-const { listCategories, createCategory, updateCategory, deleteCategory } = require('./controllers/category');
-const { balance, transactionDetails, createTransaction, updateTransaction, deleteTransaction, balanceTransaction } = require('./controllers/transactions');
-const { amount, amountRegister, amountUpdate } = require('./controllers/amount');
+const login = require('./controllers/login/login');
 
 const userSchema = require('./schemas/userSchema');
 const loginSchema = require('./schemas/loginSchema');
 const transactionSchema = require('./schemas/transactionSchema');
 const amountSchema = require('./schemas/amountSchema');
+
+const tokenValidation = require('./middleware/tokenValidation');
+const bodyValidation = require('./middleware/bodyvalidation');
+const typeValidation = require('./middleware/typeValidation');
+const profile = require('./controllers/users/profile');
+const updateUser = require('./controllers/users/updateUser');
+const deleteUser = require('./controllers/users/deleteUser');
+const userRegister = require('./controllers/users/userRegister');
+const updateCategory = require('./controllers/category/updateCategory');
+const deleteCategory = require('./controllers/category/deleteCategory');
+const createCategory = require('./controllers/category/createCategory');
+const listCategories = require('./controllers/category/listCategories');
+const amountConsult = require('./controllers/amount/amountConsult');
+const amountUpdate = require('./controllers/amount/amountUpdate');
+const amountRegister = require('./controllers/amount/amountRegister');
+const balance = require('./controllers/transactions/balance');
+const balanceTransaction = require('./controllers/transactions/balanceTransaction');
+const transactionDetails = require('./controllers/transactions/transactionDetails');
+const deleteTransaction = require('./controllers/transactions/deleteTransaction');
+const createTransaction = require('./controllers/transactions/createTransaction');
+const updateTransaction = require('./controllers/transactions/updateTransaction');
+
 
 const routes = express();
 
@@ -28,7 +44,7 @@ routes.post('/categoria', createCategory);
 routes.put('/categoria', updateCategory);
 routes.delete('/categoria', deleteCategory)
 
-routes.get('/saldo', amount);
+routes.get('/saldo', amountConsult);
 routes.post('/saldo', bodyValidation(amountSchema), amountRegister);
 routes.put('/saldo', bodyValidation(amountSchema), amountUpdate);
 
