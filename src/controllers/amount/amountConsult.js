@@ -1,5 +1,5 @@
 const connect = require("../../connect/connect");
-const pendencies = require("../transactions/pendencies");
+const pendencies = require("../../utils/pendencies");
 
 const amountConsult = async (req, res) => {
     const { id } = req.userLogged;

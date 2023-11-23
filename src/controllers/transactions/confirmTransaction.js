@@ -1,5 +1,5 @@
 const connect = require("../../connect/connect");
-const pendencies = require("./pendencies");
+const pendencies = require("../../utils/pendencies");
 
 const confirmTransaction = async (req, res) => {
     const transactionId = req.params.id;
