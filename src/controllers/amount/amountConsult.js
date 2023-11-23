@@ -1,21 +1,20 @@
 const connect = require("../../connect/connect");
+const pendencies = require("../transactions/pendencies");
 
 const amountConsult = async (req, res) => {
     const { id } = req.userLogged;
     try {
-        const value = await connect('saldo').where({ usuario_id: id }).select('valor');
+        const value = await connect('saldo').where({ usuario_id: id }).select('valor').first();
 
         if (value.length < 1) {
             return res.status(404).json({ mensagem: 'Ainda não há saldo cadastrado' });
         };
-        return res.json(value[0]);
+        const pague = await pendencies(id, value.valor);
+
+        return res.json({ value, pague });
     } catch (error) {
         return res.status(500).json({ mensagem: 'Erro interno do servidor' });
     }
 };
-
-//confirmação de recebimento e alteração no saldo
-
-//confirmação de pagamento e alteração no saldo
 
 module.exports = amountConsult;

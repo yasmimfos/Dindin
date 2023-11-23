@@ -20,7 +20,8 @@ create table transacoes(
     data date,
     categoria varchar references categorias(categoria) not null,
     usuario_id integer references usuarios(id) not null,
-    tipo varchar(10) not null
+    tipo varchar(10) not null,
+    pago boolean
 );
 
 create table saldo(

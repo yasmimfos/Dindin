@@ -10,7 +10,7 @@ const updateTransaction = async (req, res) => {
         if (verifyId.length < 1) {
             return res.status(404).json({ mensagem: 'Transação não encontrada' });
         }
-        const register = await connect('transacoes').update({ descricao, tipo, valor, categoria, data, usuario_id: id }).where({ id: transactionId }).returning('*');
+        const register = await connect('transacoes').update({ descricao, tipo, valor, categoria, data, usuario_id: id, pago: false }).where({ id: transactionId }).returning('*');
         return res.json(register[0]);
     } catch (error) {
         return res.status(500).json({ mensagem: 'Erro interno do servidor' });

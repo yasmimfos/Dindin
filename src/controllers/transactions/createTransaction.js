@@ -10,7 +10,7 @@ const createTransaction = async (req, res) => {
             await connect('categorias').insert({ categoria });
         };
 
-        const register = await connect('transacoes').insert({ descricao, tipo, valor, categoria, data, usuario_id: id }).returning('*');
+        const register = await connect('transacoes').insert({ descricao, tipo, valor, categoria, data, usuario_id: id, pago: false }).returning('*');
         return res.status(201).json(register[0]);
     } catch (error) {
         console.log(error);

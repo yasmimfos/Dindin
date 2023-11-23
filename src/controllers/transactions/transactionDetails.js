@@ -5,7 +5,7 @@ const transactionDetails = async (req, res) => {
     const transactionId = parseInt(req.params.id);
 
     try {
-        const details = await connect('transacoes').where({ id: transactionId, usuario_id: id });
+        const details = await connect('transacoes').select('descricao', 'valor', 'categoria', 'data').where({ id: transactionId, usuario_id: id });
 
         if (details < 1) {
             return res.status(404).json({ mensagem: 'Transação inválida' });
