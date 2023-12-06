@@ -1,5 +1,9 @@
-const amountUpdate = require('./amountUpdate');
-const amountConsult = require('./amountConsult');
-const amountRegister = require('./amountRegister');
+const amountUpdateController = require('./amountUpdateController');
+const amountConsultController = require('./amountConsultController');
+const amountRegisterController = require('./amountRegisterController');
 
-module.exports = { amountUpdate, amountRegister, amountConsult };
+module.exports = {
+    amountConsultController,
+    amountRegisterController,
+    amountUpdateController
+};

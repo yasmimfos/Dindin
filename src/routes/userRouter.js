@@ -1,18 +1,16 @@
 const { Router } = require('express');
 const tokenValidation = require('../middleware/tokenValidation');
-const profile = require('../controllers/users/profile');
 const userSchema = require('../schemas/userSchema');
 const bodyValidation = require('../middleware/bodyvalidation');
-const updateUser = require('../controllers/users/updateUser');
-const deleteUser = require('../controllers/users/deleteUser');
-const userRegister = require('../controllers/users/userRegister');
+const { userRegisterController, showUserController, updateUserController, deleteUserController } = require('../controllers');
+
 
 const userRouter = Router();
 
-userRouter.post('/', bodyValidation(userSchema), userRegister);
+userRouter.post('/', bodyValidation(userSchema), userRegisterController.handle);
 userRouter.use(tokenValidation);
-userRouter.get('/', profile);
-userRouter.put('/', bodyValidation(userSchema), updateUser);
-userRouter.delete('/', deleteUser);
+userRouter.get('/', showUserController.handle);
+userRouter.put('/', bodyValidation(userSchema), updateUserController.handle);
+userRouter.delete('/', deleteUserController.handle);
 
 module.exports = userRouter;

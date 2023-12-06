@@ -1,6 +1,6 @@
-const deleteUser = require('./deleteUser');
-const profile = require('./profile');
-const updateUser = require('./updateUser');
-const userRegister = require('./userRegister');
+const deleteUserController = require('./deleteUserController');
+const updateUserController = require('./updateUserController');
+const userRegisterController = require('./userRegisterController');
+const showUserController = require('./showUserController');
 
-module.exports = { deleteUser, profile, updateUser, userRegister };
+module.exports = { deleteUserController, updateUserController, userRegisterController, showUserController };

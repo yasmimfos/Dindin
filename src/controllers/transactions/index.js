@@ -1,7 +1,13 @@
-const confirmTransaction = require('./confirmTransaction');
-const createTransaction = require('./createTransaction');
-const deleteTransaction = require('./deleteTransaction');
-const transactionDetails = require('./transactionDetails');
-const updateTransaction = require('./updateTransaction');
+const confirmTransactionController = require('./confirmTransactionController');
+const createTransactionController = require('./createTransactionController');
+const deleteTransactionController = require('./deleteTransactionController');
+const transactionDetailsController = require('./transactionDetailsController');
+const updateTransactioncontroller = require('./updateTransactionController');
 
-module.exports = { confirmTransaction, createTransaction, deleteTransaction, transactionDetails, updateTransaction }
+module.exports = {
+    confirmTransactionController,
+    createTransactionController,
+    deleteTransactionController,
+    transactionDetailsController,
+    updateTransactioncontroller
+}

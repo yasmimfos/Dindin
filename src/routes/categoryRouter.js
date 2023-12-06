@@ -1,16 +1,14 @@
 const { Router } = require('express');
 const tokenValidation = require('../middleware/tokenValidation');
-const listCategories = require('../controllers/category/listCategories');
-const createCategory = require('../controllers/category/createCategory');
-const updateCategory = require('../controllers/category/updateCategory');
-const deleteCategory = require('../controllers/category/deleteCategory');
+const { listCategoriesController, createCategoryController, updateCategoryController, deleteCategoryController } = require('../controllers/category');
+
 
 const categoryRouter = Router();
 
 categoryRouter.use(tokenValidation);
-categoryRouter.get('/', listCategories);
-categoryRouter.post('/', createCategory);
-categoryRouter.put('/', updateCategory);
-categoryRouter.delete('/', deleteCategory);
+categoryRouter.get('/', listCategoriesController);
+categoryRouter.post('/', createCategoryController);
+categoryRouter.put('/', updateCategoryController);
+categoryRouter.delete('/', deleteCategoryController);
 
 module.exports = categoryRouter;

@@ -1,6 +1,11 @@
-const createCategory = require('./createCategory');
-const listCategories = require('./listCategories');
-const deleteCategory = require('./deleteCategory');
-const updateCategory = require('./updateCategory');
+const createCategoryController = require('./createCategoryController');
+const listCategoriesController = require('./listCategoriesController');
+const deleteCategoryController = require('./deleteCategoryController');
+const updateCategoryController = require('./updateCategoryController');
 
-module.exports = { createCategory, listCategories, deleteCategory, updateCategory }
+module.exports = {
+    createCategoryController,
+    listCategoriesController,
+    deleteCategoryController,
+    updateCategoryController
+}

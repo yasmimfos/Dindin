@@ -1,6 +1,11 @@
-const balance = require('./balance');
-const balancePayable = require('./balancePayable');
-const balanceReceive = require('./balanceReceive');
-const balanceTransaction = require('./balanceTransaction');
+const balanceController = require('./balanceController');
+const balancePayableController = require('./balancePayableController');
+const balanceReceiveController = require('./balanceReceiveController');
+const balanceTransactionController = require('./balanceTransactionController');
 
-module.exports = { balance, balancePayable, balanceReceive, balanceTransaction }
+module.exports = {
+    balanceController,
+    balancePayableController,
+    balanceReceiveController,
+    balanceTransactionController
+}
