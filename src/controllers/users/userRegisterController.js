@@ -1,11 +1,15 @@
-const { userRegisterService } = require('../../services/userService');
+const { userRegisterService } = require('../../services');
 
 const userRegisterController = {
     async handle(req, res) {
-        const { nome, email, senha, profissao, idade } = req.body;
-
-        const user = await userRegisterService.execute(nome, email, senha, profissao, idade);
-        return res.status(200).json(user);
+        try {
+            const { nome, email, senha, profissao, idade } = req.body;
+            const user = await userRegisterService.execute(nome, email, senha, profissao, idade, res);
+            return res.status(200).json(user);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ mensagem: 'Erro interno do servidor' });
+        }
     }
 };
 

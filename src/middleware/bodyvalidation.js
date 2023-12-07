@@ -1,3 +1,5 @@
+const loginSchema = require("../schemas/loginSchema");
+
 const bodyValidation = schema => async (req, res, next) => {
     try {
         await schema.validateAsync(req.body);

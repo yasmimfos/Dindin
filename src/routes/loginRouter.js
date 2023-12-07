@@ -5,6 +5,6 @@ const { loginUserController } = require('../controllers');
 
 const loginRouter = Router();
 
-loginRouter.post('/', bodyValidation(loginSchema), loginUserController);
+loginRouter.post('/', bodyValidation(loginSchema), loginUserController.handle);
 
 module.exports = loginRouter;

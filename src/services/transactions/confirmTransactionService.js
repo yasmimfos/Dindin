@@ -3,7 +3,7 @@ const transactionsRepository = require("../../repositories/transactionsRepositor
 const pendencies = require("../../utils/pendencies");
 
 const confirmTransactionService = {
-    async execute(transactionId, userId) {
+    async execute(transactionId, userId, res) {
         const transaction = transactionsRepository.getById(transactionId);
         const amount = await amountRepository.getAmount(userId);
 

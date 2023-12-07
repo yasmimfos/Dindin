@@ -5,7 +5,7 @@ const balancePayableController = {
         try {
             const { id } = req.userLogged;
 
-            const list = balancePayableService.execute(id);
+            const list = balancePayableService.execute(id, res);
             return res.json(list);
         } catch (error) {
             res.status(500).json({ mensagem: 'Erro interno do servidor' });

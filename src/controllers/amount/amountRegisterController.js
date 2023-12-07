@@ -1,6 +1,4 @@
-const connect = require("../../connect/connect");
 const amountRegisterService = require("../../services/amount/amountRegisterService");
-const pendencies = require("../../utils/pendencies");
 
 const amountRegisterController = {
     async handle(req, res) {

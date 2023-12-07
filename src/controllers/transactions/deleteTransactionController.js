@@ -6,7 +6,7 @@ const deleteTransactionController = {
         const transactionId = parseInt(req.params.id);
 
         try {
-            const deleted = await deleteTransactionService.execute(id, transactionId);
+            const deleted = await deleteTransactionService.execute(id, transactionId, res);
             return res.status(204).send();
         } catch (error) {
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });

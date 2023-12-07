@@ -7,7 +7,7 @@ const updateTransactionController = {
         const { tipo, descricao, valor, data, categoria } = req.body;
 
         try {
-            const updated = await updateTransactionService.execute(id, transactionId, tipo, descricao, valor, data, categoria);
+            const updated = await updateTransactionService.execute(id, transactionId, tipo, descricao, valor, data, categoria, res);
             return res.json(updated[0]);
         } catch (error) {
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });

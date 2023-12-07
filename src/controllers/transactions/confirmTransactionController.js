@@ -5,7 +5,7 @@ const confirmTransactionController = {
         try {
             const transactionId = req.params.id;
             const userId = req.userLogged.id;
-            const { newAmount, pay } = await confirmTransactionService.execute(transactionId, userId);
+            const { newAmount, pay } = await confirmTransactionService.execute(transactionId, userId, res);
             return res.json({ saldo: newAmount, pay })
         } catch (error) {
             console.log(error);

@@ -6,9 +6,9 @@ const { listCategoriesController, createCategoryController, updateCategoryContro
 const categoryRouter = Router();
 
 categoryRouter.use(tokenValidation);
-categoryRouter.get('/', listCategoriesController);
-categoryRouter.post('/', createCategoryController);
-categoryRouter.put('/', updateCategoryController);
-categoryRouter.delete('/', deleteCategoryController);
+categoryRouter.get('/', listCategoriesController.handle);
+categoryRouter.post('/', createCategoryController.handle);
+categoryRouter.put('/', updateCategoryController.handle);
+categoryRouter.delete('/', deleteCategoryController.handle);
 
 module.exports = categoryRouter;

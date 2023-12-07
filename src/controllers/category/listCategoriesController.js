@@ -5,7 +5,7 @@ const listCategoriesController = {
         try {
             const { categoria } = req.query;
 
-            const category = listCategoriesService.execute(categoria);
+            const category = listCategoriesService.execute(categoria, res);
             return res.json(category)
         } catch (erro) {
             return res.status(500).json({ mensagem: 'Erro interno no servidor' });

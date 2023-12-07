@@ -1,7 +1,7 @@
 const categoryRepository = require("../../repositories/categoryRepository");
 
 const updateCategoryService = {
-    async execute(categoria, nova_categoria) {
+    async execute(categoria, nova_categoria, res) {
         const category = categoryRepository.verify(categoria);
         if (category < 1) {
             return res.status(404).json({ mensagem: `A categoria ${categoria} não existe` });

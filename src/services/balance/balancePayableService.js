@@ -1,7 +1,7 @@
 const transactionsRepository = require("../../repositories/transactionsRepository");
 
 const balancePayableService = {
-    async execute(id) {
+    async execute(id, res) {
         const list = await transactionsRepository.getByType(id, 'saida');
         if (list < 1) {
             return res.status(404).json({ mensagem: 'Não há saídas registradas' });

@@ -5,7 +5,7 @@ const balanceReceiveController = {
         try {
             const { id } = req.userLogged;
 
-            const list = await balanceReceiveService.execute(id);
+            const list = await balanceReceiveService.execute(id, res);
             return res.json(list);
         } catch (error) {
             res.status(500).json({ mensagem: 'Erro interno do servidor' });

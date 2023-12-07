@@ -23,5 +23,6 @@ module.exports = {
     balanceService,
     balancePayableService,
     balanceReceiveService,
-    balanceTransactionService
+    balanceTransactionService,
+    deleteCategoryService
 }

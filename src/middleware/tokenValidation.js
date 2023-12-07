@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const connect = require('../connect/connect');
+const connect = require("../configs/database/connect/connect");
 
 const tokenValidation = async (req, res, next) => {
     const { authorization } = req.headers;

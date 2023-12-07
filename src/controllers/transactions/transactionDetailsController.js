@@ -6,7 +6,7 @@ const transactionDetailsController = {
         const transactionId = parseInt(req.params.id);
 
         try {
-            const details = await transactionDetailsService.execute(id, transactionId)
+            const details = await transactionDetailsService.execute(id, transactionId, res)
             return res.json(details);
         } catch (error) {
             console.log(error);

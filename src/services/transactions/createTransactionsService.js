@@ -1,7 +1,7 @@
 const { categoryRepository, transactionsRepository } = require("../../repositories");
 
 const createTransactionService = {
-    async execute(id, tipo, descricao, valor, data, categoria) {
+    async execute(id, tipo, descricao, valor, data, categoria, res) {
         const categoryValidation = categoryRepository.verify(categoria);
         if (categoryValidation.length < 1) {
             await connect('categorias').insert({ categoria });

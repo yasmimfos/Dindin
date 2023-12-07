@@ -1,7 +1,7 @@
 const transactionsRepository = require("../../repositories/transactionsRepository");
 
 const balanceService = {
-    async execute(id) {
+    async execute(id, res) {
         const list = await transactionsRepository.getByUser(id);
         if (list < 1) {
             return res.status(404).json({ mensagem: 'Não há transações registradas' });

@@ -6,7 +6,7 @@ const createTransactionController = {
             const { id } = req.userLogged;
             const { tipo, descricao, valor, data, categoria } = req.body;
 
-            const register = await createTransactionService.execute(id, tipo, descricao, valor, data, categoria);
+            const register = await createTransactionService.execute(id, tipo, descricao, valor, data, categoria, res);
             return res.status(201).json(register[0]);
         } catch (error) {
             console.log(error);

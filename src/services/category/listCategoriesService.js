@@ -1,7 +1,7 @@
 const categoryRepository = require("../../repositories/categoryRepository");
 
 const listCategoriesService = {
-    async execute(categoria) {
+    async execute(categoria, res) {
         if (!categoria) {
             const list = categoryRepository.list();
             if (list < 1) {
