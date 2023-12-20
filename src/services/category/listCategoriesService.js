@@ -1,18 +1,14 @@
-const categoryRepository = require("../../repositories/categoryRepository");
+const { categoryRepository } = require("../../repositories");
+const verifyCategory = require("../../utils/verifyCategoryExists");
 
 const listCategoriesService = {
-    async execute(categoria, res) {
+    async execute(categoria) {
         if (!categoria) {
-            const list = categoryRepository.list();
-            if (list < 1) {
-                return res.status(200).json({ mensagem: 'Ainda não há categorias registradas' });
-            }
-            return res.json(list);
+            const list = await categoryRepository.list();
+            return list;
         } else {
+            await verifyCategory(categoria);
             const listCategory = await categoryRepository.verify(categoria);
-            if (listCategory < 1) {
-                return res.status(404).json({ mensagem: `Não há nada em ${categoria}` });
-            }
             return listCategory;
         }
     }

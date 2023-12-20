@@ -1,14 +1,12 @@
 const categoryRepository = require("../../repositories/categoryRepository");
+const verifyCategoryBeforeCreation = require("../../utils/verifyCategryBeforeCreation");
 
 const createCategoryService = {
-    async execute(categoria, res) {
-        const category = categoryRepository.verify(categoria);
-        if (category >= 1) {
-            return res.status(404).json({ mensagem: `A categoria ${categoria} já foi criada` });
-        } else {
-            const creation = await categoryRepository.create(categoria);
-            return creation;
-        }
+    async execute(categoria) {
+        await verifyCategoryBeforeCreation(categoria);
+
+        const creation = await categoryRepository.create(categoria);
+        return creation;
     }
 }
 module.exports = createCategoryService;

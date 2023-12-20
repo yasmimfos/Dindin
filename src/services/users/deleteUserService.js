@@ -6,8 +6,9 @@ const deleteUserService = {
         if (!user) {
             return res.status(404).json({ mensagem: 'usuário não encontrado' });
         }
-        const deleted = await userRepository.delete(id);
-        return deleted;
+        //const deleted=
+        await userRepository.delete(id);
+        //return deleted;
     }
 }
 module.exports = deleteUserService;

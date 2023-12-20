@@ -1,11 +1,9 @@
 const categoryRepository = require("../../repositories/categoryRepository");
+const verifyCategoryExists = require("../../utils/verifyCategoryExists");
 
 const deleteCategoryService = {
-    async execute(categoria, res) {
-        const category = await categoryRepository.verify(categoria);
-        if (category < 1) {
-            return res.status(404).json({ mensagem: `A categoria ${categoria} não existe` });
-        }
+    async execute(categoria) {
+        await verifyCategoryExists(categoria)
         const deleted = await categoryRepository.delete(categoria);
         return deleted;
     }
