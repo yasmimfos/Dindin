@@ -1,11 +1,10 @@
 const transactionsRepository = require("../../repositories/transactionsRepository");
+const { verifyTransactions } = require("../../utils");
 
 const updateTransactionService = {
-    async execute(id, transactionId, tipo, descricao, valor, data, categoria, res) {
-        const verifyId = await transactionsRepository.getById(transactionId);
-        if (verifyId.length < 1) {
-            return res.status(404).json({ mensagem: 'Transação não encontrada' });
-        }
+    async execute(id, transactionId, tipo, descricao, valor, data, categoria) {
+        verifyTransactions(transactionId);
+
         const register = transactionsRepository.update(descricao, tipo, valor, categoria, data, id, transactionId);
         return register;
     }

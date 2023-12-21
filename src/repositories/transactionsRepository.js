@@ -1,5 +1,8 @@
+const connect = require('../configs/database/connect/connect');
+
 const transactionsRepository = {
-    create: async function () {
+    create: async function (id, tipo, descricao, valor, data, categoria) {
+        console.log(valor);
         return await connect('transacoes')
             .insert({ descricao, tipo, valor, categoria, data, usuario_id: id, pago: false })
             .returning('*');
@@ -10,9 +13,9 @@ const transactionsRepository = {
             .where({ id: transactionId })
             .first();
     },
-    update: async function (newAmount, userId) {
-        return await connect('saldo')
-            .update({ valor: newAmount })
+    confirm: async function (newAmount, userId) {
+        return await connect('transacoes')
+            .update({ valor: newAmount, pago: true })
             .where({ usuario_id: userId });
     },
     delete: async function (transactionId) {
@@ -39,17 +42,15 @@ const transactionsRepository = {
         return await connect('transacoes').select('descricao', 'valor', 'categoria', 'data')
             .where({ usuario_id: id, tipo: type })
     },
-    sum: async function (type) {
+    sum: async function (id, type) {
         return await connect('transacoes')
-            .sum({ entrada: 'valor' })
+            .sum('valor')
             .where({ usuario_id: id, tipo: type })
-            .first();
     },
     sumByTypeAndPay: async function (id, type, boolean) {
         return await connect('transacoes')
-            .sum({ entrada: 'valor' })
+            .sum('valor')
             .where({ usuario_id: id, tipo: type, pago: boolean })
-            .first()
     }
 }
 module.exports = transactionsRepository;

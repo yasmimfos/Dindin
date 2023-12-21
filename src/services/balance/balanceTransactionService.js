@@ -2,8 +2,8 @@ const transactionsRepository = require("../../repositories/transactionsRepositor
 
 const balanceTransactionService = {
     async execute(id) {
-        const receive = await transactionsRepository.sum('entrada');
-        const payable = await transactionsRepository.sum('saida');
+        const receive = await transactionsRepository.sum(id, 'entrada');
+        const payable = await transactionsRepository.sum(id, 'saida');
 
         const balanceTotal = {
             entrada: Number(receive.entrada) || 0,

@@ -3,8 +3,8 @@ const pendencies = require("../../utils/pendencies");
 
 const amountUpdateService = {
     async execute(id, valor) {
-        const value = amountRepository.updateAmount(id, valor);
-        const pay = await pendencies(id, value.valor);
+        const value = await amountRepository.updateAmount(id, valor);
+        const pay = await pendencies(id, value[0].valor);
         return { value, pay };
     }
 }

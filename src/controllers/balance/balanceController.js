@@ -4,10 +4,13 @@ const balanceController = {
     async handle(req, res) {
         try {
             const { id } = req.userLogged;
-            const list = await balanceService.execute(id, res);
+            const list = await balanceService.execute(id);
             return res.json(list);
         } catch (error) {
-            res.status(500).json({ mensagem: 'Erro interno do servidor' });
+            if (error instanceof NotFoundError) {
+                return res.status(404).json({ error: error.message })
+            }
+            return res.status(500).json({ mensagem: 'Erro interno do servidor' });
         };
     }
 };

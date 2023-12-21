@@ -5,10 +5,9 @@ const balanceTransactionController = {
         try {
             const { id } = req.userLogged;
 
-            const balance = balanceTransactionService.execute(id);
+            const balance = await balanceTransactionService.execute(id);
             return res.status(200).json({ balance });
         } catch (error) {
-            console.log(error);
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });
         };
     }

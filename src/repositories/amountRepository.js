@@ -8,7 +8,7 @@ const amountRepository = {
         return await connect('saldo').insert({ usuario_id: id, valor }).returning('valor');
     },
     updateAmount: async function (id, valor) {
-        return await connect('saldo').update({ usuario_id: id, valor }).returning('valor').first();
+        return await connect('saldo').update({ usuario_id: id, valor }).returning('valor');
     }
 }
 

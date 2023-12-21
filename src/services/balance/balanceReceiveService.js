@@ -3,11 +3,11 @@ const transactionsRepository = require("../../repositories/transactionsRepositor
 const balanceReceiveService = {
     async execute(id, res) {
         const list = await transactionsRepository.getByType(id, 'entrada');
-        if (list < 1) {
-            return res.status(404).json({ mensagem: `Não há transações do tipo ${tipo} registradas` });
+        if (list[0]) {
+            throw new NotFoundError('Não há saídas registradas');
         }
-        //somar o total de entradas
-        return list;
+        const soma = await transactionsRepository.sum(id, 'entrada')
+        return { list, soma };
     }
 }
 module.exports = balanceReceiveService;

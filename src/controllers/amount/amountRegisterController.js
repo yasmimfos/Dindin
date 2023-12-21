@@ -1,3 +1,4 @@
+const { ConflictError } = require("../../errors");
 const amountRegisterService = require("../../services/amount/amountRegisterService");
 
 const amountRegisterController = {
@@ -10,6 +11,10 @@ const amountRegisterController = {
 
             return res.json({ saldo: newValue, pay });
         } catch (error) {
+            if (error instanceof ConflictError) {
+                return res.status(403).json({ error: error.message });
+            }
+            console.log(error)
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });
         }
     }

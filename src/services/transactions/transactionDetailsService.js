@@ -1,11 +1,12 @@
+const NotFoundError = require("../../errors/NotFoundError");
 const transactionsRepository = require("../../repositories/transactionsRepository");
+const { verifyTransactions } = require("../../utils");
 
 const transactionDetailsService = {
-    async execute(id, transactionId, res) {
+    async execute(id, transactionId) {
+        verifyTransactions(transactionId);
+
         const details = await transactionsRepository.getByIdAndUser(transactionId, id)
-        if (details < 1) {
-            return res.status(404).json({ mensagem: 'Transação inválida' });
-        };
         return details;
     }
 }

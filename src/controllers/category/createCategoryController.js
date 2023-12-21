@@ -11,7 +11,6 @@ const createCategoryController = {
             if (error instanceof ConflictError) {
                 return res.status(400).json({ error: error.message });
             }
-            console.log(error)
             return res.status(500).json({ mensagem: 'Erro interno no servidor' });
         }
     }

@@ -1,3 +1,4 @@
+const NotFoundError = require("../../errors/NotFoundError");
 const transactionDetailsService = require("../../services/transactions/transactionDetailsService");
 
 const transactionDetailsController = {
@@ -6,10 +7,12 @@ const transactionDetailsController = {
         const transactionId = parseInt(req.params.id);
 
         try {
-            const details = await transactionDetailsService.execute(id, transactionId, res)
+            const details = await transactionDetailsService.execute(id, transactionId)
             return res.json(details);
         } catch (error) {
-            console.log(error);
+            if (error instanceof NotFoundError) {
+                return res.status(404).json({ error: error.message })
+            }
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });
         };
     }

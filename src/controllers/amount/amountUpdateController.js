@@ -8,6 +8,7 @@ const amountUpdateController = {
             const { value, pay } = await amountUpdateService.execute(id, valor);
             return res.json({ saldo: value, pay });
         } catch (error) {
+            console.log(error)
             return res.status(500).json({ mensagem: 'Erro interno do servidor' });
         }
     }

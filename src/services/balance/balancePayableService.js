@@ -1,13 +1,14 @@
+const { NotFoundError } = require("../../errors");
 const transactionsRepository = require("../../repositories/transactionsRepository");
 
 const balancePayableService = {
-    async execute(id, res) {
+    async execute(id) {
         const list = await transactionsRepository.getByType(id, 'saida');
-        if (list < 1) {
-            return res.status(404).json({ mensagem: 'Não há saídas registradas' });
+        if (!list[0]) {
+            throw new NotFoundError('Não há saídas registradas');
         }
-        //somar o total de saidas
-        return list;
+        const soma = await transactionsRepository.sum(id, 'saida')
+        return { list, soma };
     }
 }
 module.exports = balancePayableService;

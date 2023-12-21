@@ -1,10 +1,11 @@
+const { NotFoundError } = require("../../errors");
 const transactionsRepository = require("../../repositories/transactionsRepository");
 
 const balanceService = {
-    async execute(id, res) {
+    async execute(id) {
         const list = await transactionsRepository.getByUser(id);
         if (list < 1) {
-            return res.status(404).json({ mensagem: 'Não há transações registradas' });
+            throw new NotFoundError('Não há transações registradas');
         };
         return list;
     }
