@@ -4,7 +4,7 @@ const { verifyTransactions } = require("../../utils");
 
 const transactionDetailsService = {
     async execute(id, transactionId) {
-        verifyTransactions(transactionId);
+        await verifyTransactions(transactionId);
 
         const details = await transactionsRepository.getByIdAndUser(transactionId, id)
         return details;

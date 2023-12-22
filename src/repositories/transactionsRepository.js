@@ -2,7 +2,6 @@ const connect = require('../configs/database/connect/connect');
 
 const transactionsRepository = {
     create: async function (id, tipo, descricao, valor, data, categoria) {
-        console.log(valor);
         return await connect('transacoes')
             .insert({ descricao, tipo, valor, categoria, data, usuario_id: id, pago: false })
             .returning('*');
@@ -13,9 +12,9 @@ const transactionsRepository = {
             .where({ id: transactionId })
             .first();
     },
-    confirm: async function (newAmount, userId) {
+    confirm: async function (userId) {
         return await connect('transacoes')
-            .update({ valor: newAmount, pago: true })
+            .update({ pago: true })
             .where({ usuario_id: userId });
     },
     delete: async function (transactionId) {

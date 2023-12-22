@@ -20,14 +20,14 @@ const confirmTransactionService = {
 
             const newAmount = amount.valor - transaction.valor
             await amountRepository.updateAmount(userId, newAmount);
-            await transactionsRepository.confirm(newAmount, userId);
+            await transactionsRepository.confirm(userId);
 
             const pay = await pendencies(userId, newAmount);
             return { saldo: newAmount, pay }
         } else {
             const newAmount = amount.valor + transaction.valor
             await amountRepository.updateAmount(userId, newAmount);
-            await transactionsRepository.confirm(newAmount, userId);
+            await transactionsRepository.confirm(userId);
 
             const pay = pendencies(userId, newAmount);
 
