@@ -6,12 +6,13 @@ const balanceReceiveController = {
         try {
             const { id } = req.userLogged;
 
-            const { list, soma } = await balanceReceiveService.execute(id, res);
+            const { list, soma } = await balanceReceiveService.execute(id);
             return res.json({ list, soma });
         } catch (error) {
             if (error instanceof NotFoundError) {
                 return res.status(404).json({ error: error.message });
             }
+            console.log(error)
             res.status(500).json({ mensagem: 'Erro interno do servidor' });
         };
     }

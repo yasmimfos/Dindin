@@ -7,7 +7,8 @@ const balancePayableService = {
         if (!list[0]) {
             throw new NotFoundError('Não há saídas registradas');
         }
-        const soma = await transactionsRepository.sum(id, 'saida')
+        const soma = await transactionsRepository.sum(id, 'saida');
+
         return { list, soma };
     }
 }
